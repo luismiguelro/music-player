@@ -7,17 +7,19 @@
     <title>Music Player</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
     <link rel="stylesheet" href="/css/main.css">
-    <script src="./js/main.js"></script>
 </head>
 <body>
 
     <!-- Player -->
     <main class="player">
            <!-- Title-->
-           <h1 class="title">Nueva Cancion</h1>
+           <h1 class="title" id="title"></h1>
         
            <!--Cover-->
-           <img src="/img/queen-img.jpg" alt="" class="cover">
+           <img src="" alt="" class="cover" id="cover">
+           
+           <!--Audio-->
+           <audio src="" id="audio"></audio>
   
           <!-- Progress bar -->
           <div class="progress-container">
@@ -39,12 +41,14 @@
         </section>
   
            <!--Song List-->
-           <ul class="songs">
+           <ul class="songs" id="songs">
+            <!--
               <li><a href="#">Song 1</a></li>
               <li><a href="#">Song 2</a></li>
               <li><a href="#">Song 3</a></li>
+              -->
            </ul>
     </main>
-    
+    <script src="/js/main.js"></script>
 </body>
 </html>

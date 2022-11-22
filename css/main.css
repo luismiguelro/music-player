@@ -78,7 +78,11 @@ body {
     margin-bottom: 1.5rem;
 }
 .songs a{
-    color: white;
+    color: lightslategray;
     text-decoration: none;
+}
 
+.songs a.active{
+    color: white;
+    font-weight: bold;
 }
