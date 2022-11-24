@@ -82,7 +82,10 @@ body {
     text-decoration: none;
 }
 
-.songs a.active{
+.songs a.active {
     color: white;
     font-weight: bold;
+}
+#play, #prev, #next:hover{
+    cursor: pointer;
 }
