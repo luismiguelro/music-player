@@ -1,4 +1,4 @@
-/*Objetivo: llevar acabo cada una de las funciones correspondientes desglozadas, 
+/*Objetivo: llevar acabo cada una de las funciones correspondientes , 
 aunque puede tener mejoras en el codigo */
 
 // Song data
@@ -32,8 +32,14 @@ const title = document.getElementById("title");
 const play = document.getElementById("play");
 const next = document.getElementById("next");
 const prev = document.getElementById("prev");
+const progress = document.getElementById("progress");
+const time = document.getElementById("time");
+const progressContainer = document.getElementById("progress-container");
 
-
+//evento Progress
+progressContainer.addEventListener("click", setProgress);
+// evento elemento AUDIO
+audio.addEventListener("timeupdate",updateProgress);
 // eventos controles
 play.addEventListener("click",()=>{
    if(audio.paused){
@@ -65,7 +71,8 @@ function loadSongs() {
         songs.appendChild(li)
     })
 }
-// cargar cancion seleccionado
+
+// cargar cancion seleccionada
 function loadSong (songIndex){
     
     // cancion actual
@@ -78,8 +85,23 @@ function loadSong (songIndex){
         changeCover(songIndex);
         changeSongTitle(songIndex);
     }
-    
+}
 
+// barra de progreso clicable
+function setProgress(event){
+    // width
+    const totalWidth = this.offsetWidth;
+    const progressWidth = event.offsetX;
+    const current = (progressWidth/totalWidth)* audio.duration;
+    audio.currentTime=current;        
+}
+// Actualizar barra de progreso de la cancion
+function updateProgress(event){
+    const {duration, currentTime} = event.srcElement;
+    const percent = (currentTime/duration)*100
+    progress.style.width=percent + "%";
+    /*Convertir a minutos
+    time.textContent=duration;*/  
 }
 
 //Actualizar controles
@@ -87,12 +109,10 @@ function updateControls(){
     if(audio.paused){
         play.classList.remove("fa-pause");
         play.classList.add("fa-play");
-
     }else{
         play.classList.add("fa-pause");
         play.classList.remove("fa-play");
     }
-
 }
 
 //reproducir cancion
@@ -128,9 +148,14 @@ function changeCover(songIndex){
 function changeSongTitle(songIndex){
     title.innerText = songList[songIndex].title;
 }
+
 //anterior cancion
 function prevSong(){
-    loadSong(actualSong-1);
+    if (actualSong > 0) {
+        loadSong(actualSong - 1)
+    } else {
+        loadSong(songList.length - 1)
+    }
 }
 
 //siguiente cancion
@@ -140,7 +165,13 @@ function nextSong(){
     } else{
         loadSong(0);
     }
-    
 }
+audio.addEventListener("ended", ()=> nextSong());
 //GO
 loadSongs();
+
+/* POR AGREGAR
+Tiempo duracion cancion
+tiempo actual de la cancion
+darle al play, reproduzca primera cancion
+*/

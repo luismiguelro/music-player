@@ -46,7 +46,7 @@ body {
 }
 .progress{
     background-color: goldenrod;
-    width: 40%;
+    width: 0;
     height: 100%;
    
 }
@@ -86,6 +86,7 @@ body {
     color: white;
     font-weight: bold;
 }
-#play, #prev, #next:hover{
+#play, #prev, #next, #progress-container:hover{
     cursor: pointer;
 }
+
